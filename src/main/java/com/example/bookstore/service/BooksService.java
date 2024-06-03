@@ -1,18 +1,13 @@
 package com.example.bookstore.service;
 
 import com.example.bookstore.model.Books;
-import com.example.bookstore.model.User;
 import com.example.bookstore.model.dto.BookCreateDto;
 import com.example.bookstore.repository.BooksRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,9 +20,8 @@ public class BooksService {
         this.booksRepository = booksRepository;
     }
 
-    @TimeAop
     public List<Books> getAllBooks() {
-        return BooksRepository.customGetAllBooks();
+        return booksRepository.customGetAllBooks();
     }
 
     public Optional<Books> getBooksById(Long id) {
