@@ -32,9 +32,9 @@ public class SecurityController {
     }
 
     @PostMapping("/token")
-    public ResponseEntity<AuthResponseDto> generateToken(@RequestBody AuthRequestDto authRequest){
+    public ResponseEntity<AuthResponseDto> generateToken(@RequestBody AuthRequestDto authRequest) {
         Optional<String> token = userSecurityService.generateToken(authRequest);
-        if (token.isPresent()){
+        if (token.isPresent()) {
             return new ResponseEntity<>(new AuthResponseDto(token.get()), HttpStatus.CREATED);
         }
         return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);

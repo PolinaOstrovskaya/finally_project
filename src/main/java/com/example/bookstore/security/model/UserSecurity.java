@@ -3,6 +3,7 @@ package com.example.bookstore.security.model;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+
 @Data
 @Entity(name = "user_security")
 public class UserSecurity {

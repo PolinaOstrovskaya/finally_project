@@ -11,6 +11,5 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     @Query(nativeQuery = true, value = "SELECT * FROM users")
-        //Query work only for read!!!
     List<User> customGetAllUsers();
 }

@@ -10,6 +10,5 @@ import java.util.List;
 @Repository
 public interface BooksRepository extends JpaRepository<Books, Long> {
     @Query(nativeQuery = true, value = "SELECT * FROM users")
-        //Query work only for read!!!
-    List<Books> customGetAllBooks();
+    static List<Books> customGetAllBooks();
 }

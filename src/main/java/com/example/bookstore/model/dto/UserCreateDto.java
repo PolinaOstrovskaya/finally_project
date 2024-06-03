@@ -1,6 +1,7 @@
 package com.example.bookstore.model.dto;
 
 
+import com.example.bookstore.annotation.ContactNumberConstraint;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -18,7 +19,7 @@ public class UserCreateDto {
     private Integer age;
 
     @NotNull
-    @Pattern(regexp = "(\\s*)?(\\+)?([- _():=+]?\\d[- _():=+]?){10,15}(\\s*)")
+    @ContactNumberConstraint
     @Size(max = 15)
     private String telephone;
 }
