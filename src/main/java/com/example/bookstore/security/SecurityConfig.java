@@ -43,7 +43,7 @@ public class SecurityConfig {
                                 .requestMatchers(new AntPathRequestMatcher("/security/registration", "POST")).permitAll()
                                 .requestMatchers(new AntPathRequestMatcher("/security/token", "POST")).permitAll()
                                 .requestMatchers(new AntPathRequestMatcher("/admin", "POST")).hasRole("ADMIN")
-                                .requestMatchers(new AntPathRequestMatcher("/seller","POST")).hasAnyRole("ADMIN","SELLER")
+                                .requestMatchers(new AntPathRequestMatcher("/seller", "POST")).hasAnyRole("ADMIN", "SELLER")
                                 .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)

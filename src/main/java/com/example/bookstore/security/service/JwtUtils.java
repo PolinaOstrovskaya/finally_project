@@ -12,6 +12,7 @@ import org.springframework.util.StringUtils;
 import java.util.Date;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+
 @Slf4j
 @Component
 public class JwtUtils {
@@ -38,18 +39,18 @@ public class JwtUtils {
         return false;
     }
 
-    public Optional<String> getLoginFromToken(String token){
+    public Optional<String> getLoginFromToken(String token) {
         try {
             return Optional.of(Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject());
-        } catch (JwtException e){
+        } catch (JwtException e) {
             log.info("Jwt exception: " + e);
         }
         return Optional.empty();
     }
 
-    public Optional<String> getTokenFromRequest(HttpServletRequest request){
+    public Optional<String> getTokenFromRequest(HttpServletRequest request) {
         final String bearerToken = request.getHeader("Authorization");
-        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")){
+        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
             return Optional.of(bearerToken.substring(7));
         }
         return Optional.empty();

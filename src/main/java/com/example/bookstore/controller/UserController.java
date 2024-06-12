@@ -63,7 +63,10 @@ public class UserController {
     }
 
     @PutMapping
-    public ResponseEntity<HttpStatus> updateUser(@RequestBody User user) {
+    public ResponseEntity<HttpStatus> updateUser(@RequestBody User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            throw new CustomValidException(bindingResult.getAllErrors().toString());
+        }
         return new ResponseEntity<>(userService.updateUser(user) ? HttpStatus.NO_CONTENT : HttpStatus.CONFLICT);
     }
 

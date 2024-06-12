@@ -22,7 +22,7 @@ public class OrderService {
     }
 
     public List<Order> getAllOrders() {
-        return orderRepository.customGetAllOrders();
+        return orderRepository.findAll();
     }
 
     public Optional<Order> getOrderById(Long id) {
@@ -43,20 +43,11 @@ public class OrderService {
 
     public Boolean updateOrder(Order order) {
         Optional<Order> orderFromDBOptional = orderRepository.findById(order.getId());
-        if (orderFromDBOptional.isPresent()) {
-            Order orderFromDB = orderFromDBOptional.get();
-            if (order.getDateSale() != null) {
-                orderFromDB.setDateSale(order.getDateSale());
-            }
-
-            if (order.getStatus() != null) {
-                orderFromDB.setStatus(order.getStatus());
-            }
-
-            Order updatedOrder = orderRepository.saveAndFlush(orderFromDB);
-            return orderFromDB.equals(updatedOrder);
-        }
-        return false;
+        Order orderFromDB = orderFromDBOptional.get();
+        orderFromDB.setDateSale(order.getDateSale());
+        orderFromDB.setStatus(order.getStatus());
+        Order updatedOrder = orderRepository.saveAndFlush(orderFromDB);
+        return orderFromDB.equals(updatedOrder);
     }
 
 }

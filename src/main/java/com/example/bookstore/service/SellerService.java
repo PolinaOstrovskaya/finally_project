@@ -20,7 +20,7 @@ public class SellerService {
     }
 
     public List<Seller> getAllSellers() {
-        return sellerRepository.customGetAllSellers();
+        return sellerRepository.findAll();
     }
 
     public Optional<Seller> getSellerById(Long id) {
@@ -44,26 +44,14 @@ public class SellerService {
 
     public Boolean updateSeller(Seller seller) {
         Optional<Seller> sellerFromDBOptional = sellerRepository.findById(seller.getId());
-        if (sellerFromDBOptional.isPresent()) {
-            Seller sellerFromDB = sellerFromDBOptional.get();
-            if (seller.getSurname() != null) {
-                sellerFromDB.setSurname(seller.getSurname());
-            }
+        Seller sellerFromDB = sellerFromDBOptional.get();
+        sellerFromDB.setSurname(seller.getSurname());
+        sellerFromDB.setName(seller.getName());
+        sellerFromDB.setAddress(seller.getAddress());
+        sellerFromDB.setNumberTelephone(seller.getNumberTelephone());
+        Seller updatedSeller = sellerRepository.saveAndFlush(sellerFromDB);
+        return sellerFromDB.equals(updatedSeller);
 
-            if (seller.getName() != null) {
-                sellerFromDB.setName(seller.getName());
-            }
-
-            if (seller.getAddress() != null) {
-                sellerFromDB.setAddress(seller.getAddress());
-            }
-            if (seller.getNumberTelephone() != null) {
-                sellerFromDB.setNumberTelephone(seller.getNumberTelephone());
-            }
-            Seller updatedSeller = sellerRepository.saveAndFlush(sellerFromDB);
-            return sellerFromDB.equals(updatedSeller);
-        }
-        return false;
     }
 }
 

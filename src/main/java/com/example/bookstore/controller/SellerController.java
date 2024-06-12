@@ -60,7 +60,10 @@ public class SellerController {
     }
 
     @PutMapping
-    public ResponseEntity<HttpStatus> updateSeller(@RequestBody Seller seller) {
+    public ResponseEntity<HttpStatus> updateSeller(@RequestBody Seller seller, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            throw new CustomValidException(bindingResult.getAllErrors().toString());
+        }
         return new ResponseEntity<>(sellerService.updateSeller(seller) ? HttpStatus.NO_CONTENT : HttpStatus.CONFLICT);
     }
 

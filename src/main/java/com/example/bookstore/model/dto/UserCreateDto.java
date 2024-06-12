@@ -3,7 +3,6 @@ package com.example.bookstore.model.dto;
 
 import com.example.bookstore.annotation.ContactNumberConstraint;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.springframework.stereotype.Component;

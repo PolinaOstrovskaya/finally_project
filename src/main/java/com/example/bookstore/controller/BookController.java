@@ -11,7 +11,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,7 +40,7 @@ public class BookController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<Books> getUserById(@PathVariable("id") @Parameter Long id) {
+    public ResponseEntity<Books> getBooksById(@PathVariable("id") @Parameter Long id) {
         log.info("IN getBooksById ");
         Optional<Books> book = bookService.getBooksById(id);
         if (book.isPresent()) {
@@ -52,7 +58,10 @@ public class BookController {
     }
 
     @PutMapping
-    public ResponseEntity<HttpStatus> updateBook(@RequestBody Books books) {
+    public ResponseEntity<HttpStatus> updateBook(@RequestBody Books books, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            throw new CustomValidException(bindingResult.getAllErrors().toString());
+        }
         return new ResponseEntity<>(bookService.updateBook(books) ? HttpStatus.NO_CONTENT : HttpStatus.CONFLICT);
     }
 

@@ -21,7 +21,7 @@ public class BooksService {
     }
 
     public List<Books> getAllBooks() {
-        return booksRepository.customGetAllBooks();
+        return booksRepository.findAll();
     }
 
     public Optional<Books> getBooksById(Long id) {
@@ -44,23 +44,12 @@ public class BooksService {
 
     public Boolean updateBook(Books books) {
         Optional<Books> booksFromDBOptional = booksRepository.findById(books.getId());
-        if (booksFromDBOptional.isPresent()) {
-            Books booksFromDB = booksFromDBOptional.get();
-            if (booksFromDB.getTitle() != null) {
-                booksFromDB.setTitle(books.getTitle());
-            }
-
-            if (books.getPrice() != null) {
-                booksFromDB.setPrice(books.getPrice());
-            }
-
-            if (books.getAuthor() != null) {
-                booksFromDB.setAuthor(books.getAuthor());
-            }
-            Books updatedBooks = booksRepository.saveAndFlush(booksFromDB);
-            return booksFromDB.equals(updatedBooks);
-        }
-        return false;
+        Books booksFromDB = booksFromDBOptional.get();
+        booksFromDB.setTitle(books.getTitle());
+        booksFromDB.setPrice(books.getPrice());
+        booksFromDB.setAuthor(books.getAuthor());
+        Books updatedBooks = booksRepository.saveAndFlush(booksFromDB);
+        return booksFromDB.equals(updatedBooks);
     }
 
 }

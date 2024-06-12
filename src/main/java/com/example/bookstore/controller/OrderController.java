@@ -4,24 +4,25 @@ import com.example.bookstore.exception.CustomValidException;
 import com.example.bookstore.model.Order;
 import com.example.bookstore.model.dto.OrderCreateDto;
 import com.example.bookstore.service.OrderService;
+import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
-import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.function.ServerRequest;
-import org.springframework.web.servlet.function.ServerResponse;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Slf4j
 @RestController
@@ -40,10 +41,9 @@ public class OrderController {
     }
 
 
-
     @GetMapping("/{id}")
     public ResponseEntity<Order> getOrderById(@PathVariable("id") @Parameter Long id) {
-        log.info("IN getUserById ");
+        log.info("IN getOrderById ");
         Optional<Order> order = orderService.getOrderById(id);
         if (order.isPresent()) {
             return new ResponseEntity<>(order.get(), HttpStatus.OK);
@@ -61,7 +61,10 @@ public class OrderController {
     }
 
     @PutMapping
-    public ResponseEntity<HttpStatus> updateOrder(@RequestBody Order order) {
+    public ResponseEntity<HttpStatus> updateOrder(@RequestBody Order order, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            throw new CustomValidException(bindingResult.getAllErrors().toString());
+        }
         return new ResponseEntity<>(orderService.updateOrder(order) ? HttpStatus.NO_CONTENT : HttpStatus.CONFLICT);
     }
 

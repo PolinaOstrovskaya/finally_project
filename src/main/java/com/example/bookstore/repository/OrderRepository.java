@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
     @Query(nativeQuery = true, value = "SELECT * FROM users")
-    List<Order> customGetAllOrders();
+    List<Order> findAll();
 }

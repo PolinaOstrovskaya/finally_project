@@ -1,13 +1,14 @@
 package com.example.bookstore.security.model;
 
+
 import jakarta.persistence.*;
+
 import lombok.Data;
-import org.springframework.data.annotation.Id;
+
 
 @Data
 @Entity(name = "user_security")
 public class UserSecurity {
-    @jakarta.persistence.Id
     @Id
     @SequenceGenerator(name = "secSeqGen", sequenceName = "user_security_id_seq", allocationSize = 1)
     @GeneratedValue(generator = "secSeqGen")
