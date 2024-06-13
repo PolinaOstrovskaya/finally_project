@@ -5,12 +5,17 @@ import com.example.bookstore.exception.CustomValidException;
 import com.example.bookstore.model.User;
 import com.example.bookstore.model.dto.UserCreateDto;
 import com.example.bookstore.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +33,7 @@ import java.util.Optional;
 @Slf4j
 @RestController
 @RequestMapping("/user")
+@SecurityRequirement(name = "Bearer Authentication")
 public class UserController {
 
     private final UserService userService;
@@ -43,7 +49,14 @@ public class UserController {
     }
 
 
+    @Operation
     @GetMapping("/{id}")
+    @ApiResponses({
+            @ApiResponse(responseCode = "404"),
+            @ApiResponse(responseCode = "200"),
+            @ApiResponse(responseCode = "500"),
+    })
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<User> getUserById(@PathVariable("id") @Parameter Long id) {
         log.info("IN getUserById ");
         Optional<User> user = userService.getUserById(id);
