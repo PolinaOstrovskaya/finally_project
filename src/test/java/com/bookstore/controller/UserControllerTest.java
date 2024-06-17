@@ -1,6 +1,5 @@
 package com.bookstore.controller;
 
-import com.bookstore.UserController;
 import com.bookstore.model.User;
 import com.bookstore.model.dto.UserCreateDto;
 import com.bookstore.service.UserService;

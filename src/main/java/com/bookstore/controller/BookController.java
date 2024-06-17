@@ -1,4 +1,4 @@
-package com.bookstore;
+package com.bookstore.controller;
 
 import com.bookstore.exception.CustomValidException;
 import com.bookstore.model.Books;
