@@ -20,7 +20,7 @@
 04-06-2024 18:47:45.944 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 04-06-2024 18:47:46.011 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer.configure - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailService
 04-06-2024 18:47:46.572 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver.<init> - Exposing 5 endpoints beneath base path '/actuator'
-04-06-2024 18:47:46.622 [main] INFO  o.s.s.web.DefaultSecurityFilterChain.<init> - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@648639f1, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@210e971e, org.springframework.security.web.context.SecurityContextHolderFilter@5317a7ef, org.springframework.security.web.header.HeaderWriterFilter@57573880, org.springframework.web.filter.CorsFilter@1b9785aa, org.springframework.security.web.authentication.logout.LogoutFilter@1676e501, com.example.bookstore.security.filter.JwtFilter@1545ef47, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3d056418, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@72769bf5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@340f4723, org.springframework.security.web.session.SessionManagementFilter@42d65ffc, org.springframework.security.web.access.ExceptionTranslationFilter@61f2bf3a, org.springframework.security.web.access.intercept.AuthorizationFilter@19b7852b]
+04-06-2024 18:47:46.622 [main] INFO  o.s.s.web.DefaultSecurityFilterChain.<init> - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@648639f1, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@210e971e, org.springframework.security.web.context.SecurityContextHolderFilter@5317a7ef, org.springframework.security.web.header.HeaderWriterFilter@57573880, org.springframework.web.filter.CorsFilter@1b9785aa, org.springframework.security.web.authentication.logout.LogoutFilter@1676e501, com.bookstore.security.filter.JwtFilter@1545ef47, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3d056418, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@72769bf5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@340f4723, org.springframework.security.web.session.SessionManagementFilter@42d65ffc, org.springframework.security.web.access.ExceptionTranslationFilter@61f2bf3a, org.springframework.security.web.access.intercept.AuthorizationFilter@19b7852b]
 04-06-2024 18:47:47.347 [main] WARN  o.s.s.c.a.web.builders.WebSecurity.performBuild - You are asking Spring Security to ignore Ant [pattern='/v3/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
 04-06-2024 18:47:47.348 [main] INFO  o.s.s.web.DefaultSecurityFilterChain.<init> - Will not secure Ant [pattern='/v3/api-docs/**']
 04-06-2024 18:47:47.348 [main] WARN  o.s.s.c.a.web.builders.WebSecurity.performBuild - You are asking Spring Security to ignore Ant [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
@@ -32,11 +32,11 @@
 04-06-2024 18:47:48.143 [RMI TCP Connection(5)-172.25.160.1] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - Completed initialization in 5 ms
 04-06-2024 18:52:02.036 [http-nio-8083-exec-10] INFO  o.s.api.AbstractOpenApiResource.getOpenApi - Init duration for springdoc-openapi is: 684 ms
 04-06-2024 18:53:58.016 [http-nio-8083-exec-1] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet].log - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.IllegalStateException: Invocation failure
-Controller [com.example.bookstore.security.controller.SecurityController]
-Method [public org.springframework.http.ResponseEntity<org.springframework.http.HttpStatus> com.example.bookstore.security.controller.SecurityController.registration(com.example.bookstore.security.model.dto.RegistrationDto) throws com.example.bookstore.exception.SameUserInDatabase] with argument values:
- [0] [type=com.example.bookstore.security.model.dto.RegistrationDto] [value=RegistrationDto(login=jjjjjj, password=12345, username=kate, age=14)] ] with root cause
-com.example.bookstore.exception.SameUserInDatabase: null
-	at com.example.bookstore.security.service.UserSecurityService.registration(UserSecurityService.java:39)
+Controller [com.bookstore.security.controller.SecurityController]
+Method [public org.springframework.http.ResponseEntity<org.springframework.http.HttpStatus> com.bookstore.security.controller.SecurityController.registration(com.bookstore.security.model.dto.RegistrationDto) throws com.bookstore.exception.SameUserInDatabase] with argument values:
+ [0] [type=com.bookstore.security.model.dto.RegistrationDto] [value=RegistrationDto(login=jjjjjj, password=12345, username=kate, age=14)] ] with root cause
+com.bookstore.exception.SameUserInDatabase: null
+	at com.bookstore.security.service.UserSecurityService.registration(UserSecurityService.java:39)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -51,8 +51,8 @@ com.example.bookstore.exception.SameUserInDatabase: null
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:720)
-	at com.example.bookstore.security.service.UserSecurityService$$SpringCGLIB$$0.registration(<generated>)
-	at com.example.bookstore.security.controller.SecurityController.registration(SecurityController.java:30)
+	at com.bookstore.security.service.UserSecurityService$$SpringCGLIB$$0.registration(<generated>)
+	at com.bookstore.security.controller.SecurityController.registration(SecurityController.java:30)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -110,7 +110,7 @@ com.example.bookstore.exception.SameUserInDatabase: null
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
 	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
-	at com.example.bookstore.security.filter.JwtFilter.doFilterInternal(JwtFilter.java:45)
+	at com.bookstore.security.filter.JwtFilter.doFilterInternal(JwtFilter.java:45)
 	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
@@ -189,11 +189,11 @@ com.example.bookstore.exception.SameUserInDatabase: null
 04-06-2024 19:17:02.307 [http-nio-8083-exec-8] INFO  c.e.b.security.filter.JwtFilter.doFilterInternal - Authenticated user: Optional[user]
 04-06-2024 19:17:36.363 [http-nio-8083-exec-10] INFO  c.e.b.security.filter.JwtFilter.doFilterInternal - Authenticated user: Optional[user]
 04-06-2024 19:19:09.031 [http-nio-8083-exec-4] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet].log - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.IllegalStateException: Invocation failure
-Controller [com.example.bookstore.security.controller.SecurityController]
-Method [public org.springframework.http.ResponseEntity<org.springframework.http.HttpStatus> com.example.bookstore.security.controller.SecurityController.registration(com.example.bookstore.security.model.dto.RegistrationDto) throws com.example.bookstore.exception.SameUserInDatabase] with argument values:
- [0] [type=com.example.bookstore.security.model.dto.RegistrationDto] [value=RegistrationDto(login=user, password=user, username=user, age=23)] ] with root cause
-com.example.bookstore.exception.SameUserInDatabase: null
-	at com.example.bookstore.security.service.UserSecurityService.registration(UserSecurityService.java:39)
+Controller [com.bookstore.security.controller.SecurityController]
+Method [public org.springframework.http.ResponseEntity<org.springframework.http.HttpStatus> com.bookstore.security.controller.SecurityController.registration(com.bookstore.security.model.dto.RegistrationDto) throws com.bookstore.exception.SameUserInDatabase] with argument values:
+ [0] [type=com.bookstore.security.model.dto.RegistrationDto] [value=RegistrationDto(login=user, password=user, username=user, age=23)] ] with root cause
+com.bookstore.exception.SameUserInDatabase: null
+	at com.bookstore.security.service.UserSecurityService.registration(UserSecurityService.java:39)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -208,8 +208,8 @@ com.example.bookstore.exception.SameUserInDatabase: null
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:720)
-	at com.example.bookstore.security.service.UserSecurityService$$SpringCGLIB$$0.registration(<generated>)
-	at com.example.bookstore.security.controller.SecurityController.registration(SecurityController.java:30)
+	at com.bookstore.security.service.UserSecurityService$$SpringCGLIB$$0.registration(<generated>)
+	at com.bookstore.security.controller.SecurityController.registration(SecurityController.java:30)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -267,7 +267,7 @@ com.example.bookstore.exception.SameUserInDatabase: null
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
 	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
-	at com.example.bookstore.security.filter.JwtFilter.doFilterInternal(JwtFilter.java:45)
+	at com.bookstore.security.filter.JwtFilter.doFilterInternal(JwtFilter.java:45)
 	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
@@ -345,11 +345,11 @@ com.example.bookstore.exception.SameUserInDatabase: null
 04-06-2024 19:27:59.841 [http-nio-8083-exec-3] INFO  c.e.b.security.service.JwtUtils.validateToken - Jwt exception: io.jsonwebtoken.SignatureException: JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
 04-06-2024 19:28:01.018 [http-nio-8083-exec-6] INFO  c.e.b.security.service.JwtUtils.validateToken - Jwt exception: io.jsonwebtoken.SignatureException: JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
 04-06-2024 19:29:24.597 [http-nio-8083-exec-7] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet].log - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.IllegalStateException: Invocation failure
-Controller [com.example.bookstore.security.controller.SecurityController]
-Method [public org.springframework.http.ResponseEntity<org.springframework.http.HttpStatus> com.example.bookstore.security.controller.SecurityController.registration(com.example.bookstore.security.model.dto.RegistrationDto) throws com.example.bookstore.exception.SameUserInDatabase] with argument values:
- [0] [type=com.example.bookstore.security.model.dto.RegistrationDto] [value=RegistrationDto(login=olololll, password=231323, username=user, age=50)] ] with root cause
-com.example.bookstore.exception.SameUserInDatabase: null
-	at com.example.bookstore.security.service.UserSecurityService.registration(UserSecurityService.java:39)
+Controller [com.bookstore.security.controller.SecurityController]
+Method [public org.springframework.http.ResponseEntity<org.springframework.http.HttpStatus> com.bookstore.security.controller.SecurityController.registration(com.bookstore.security.model.dto.RegistrationDto) throws com.bookstore.exception.SameUserInDatabase] with argument values:
+ [0] [type=com.bookstore.security.model.dto.RegistrationDto] [value=RegistrationDto(login=olololll, password=231323, username=user, age=50)] ] with root cause
+com.bookstore.exception.SameUserInDatabase: null
+	at com.bookstore.security.service.UserSecurityService.registration(UserSecurityService.java:39)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -364,8 +364,8 @@ com.example.bookstore.exception.SameUserInDatabase: null
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:720)
-	at com.example.bookstore.security.service.UserSecurityService$$SpringCGLIB$$0.registration(<generated>)
-	at com.example.bookstore.security.controller.SecurityController.registration(SecurityController.java:30)
+	at com.bookstore.security.service.UserSecurityService$$SpringCGLIB$$0.registration(<generated>)
+	at com.bookstore.security.controller.SecurityController.registration(SecurityController.java:30)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -423,7 +423,7 @@ com.example.bookstore.exception.SameUserInDatabase: null
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
 	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
-	at com.example.bookstore.security.filter.JwtFilter.doFilterInternal(JwtFilter.java:45)
+	at com.bookstore.security.filter.JwtFilter.doFilterInternal(JwtFilter.java:45)
 	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
@@ -524,11 +524,11 @@ com.example.bookstore.exception.SameUserInDatabase: null
 04-06-2024 19:43:09.862 [http-nio-8083-exec-3] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver.logException - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('"' (code 34)): was expecting comma to separate Object entries]
 04-06-2024 19:43:10.087 [http-nio-8083-exec-6] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver.logException - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('"' (code 34)): was expecting comma to separate Object entries]
 04-06-2024 19:43:20.951 [http-nio-8083-exec-7] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet].log - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.IllegalStateException: Invocation failure
-Controller [com.example.bookstore.security.controller.SecurityController]
-Method [public org.springframework.http.ResponseEntity<org.springframework.http.HttpStatus> com.example.bookstore.security.controller.SecurityController.registration(com.example.bookstore.security.model.dto.RegistrationDto) throws com.example.bookstore.exception.SameUserInDatabase] with argument values:
- [0] [type=com.example.bookstore.security.model.dto.RegistrationDto] [value=RegistrationDto(login=ololol, password=12345, username=лропрпа, age=45)] ] with root cause
-com.example.bookstore.exception.SameUserInDatabase: null
-	at com.example.bookstore.security.service.UserSecurityService.registration(UserSecurityService.java:39)
+Controller [com.bookstore.security.controller.SecurityController]
+Method [public org.springframework.http.ResponseEntity<org.springframework.http.HttpStatus> com.bookstore.security.controller.SecurityController.registration(com.bookstore.security.model.dto.RegistrationDto) throws com.bookstore.exception.SameUserInDatabase] with argument values:
+ [0] [type=com.bookstore.security.model.dto.RegistrationDto] [value=RegistrationDto(login=ololol, password=12345, username=лропрпа, age=45)] ] with root cause
+com.bookstore.exception.SameUserInDatabase: null
+	at com.bookstore.security.service.UserSecurityService.registration(UserSecurityService.java:39)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -543,8 +543,8 @@ com.example.bookstore.exception.SameUserInDatabase: null
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:720)
-	at com.example.bookstore.security.service.UserSecurityService$$SpringCGLIB$$0.registration(<generated>)
-	at com.example.bookstore.security.controller.SecurityController.registration(SecurityController.java:30)
+	at com.bookstore.security.service.UserSecurityService$$SpringCGLIB$$0.registration(<generated>)
+	at com.bookstore.security.controller.SecurityController.registration(SecurityController.java:30)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -602,7 +602,7 @@ com.example.bookstore.exception.SameUserInDatabase: null
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
 	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
-	at com.example.bookstore.security.filter.JwtFilter.doFilterInternal(JwtFilter.java:45)
+	at com.bookstore.security.filter.JwtFilter.doFilterInternal(JwtFilter.java:45)
 	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
@@ -700,7 +700,7 @@ com.example.bookstore.exception.SameUserInDatabase: null
 04-06-2024 19:45:29.044 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 04-06-2024 19:45:29.140 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer.configure - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailService
 04-06-2024 19:45:29.653 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver.<init> - Exposing 5 endpoints beneath base path '/actuator'
-04-06-2024 19:45:29.701 [main] INFO  o.s.s.web.DefaultSecurityFilterChain.<init> - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1203c259, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3bd552f7, org.springframework.security.web.context.SecurityContextHolderFilter@a55b4f9, org.springframework.security.web.header.HeaderWriterFilter@77fa2dcc, org.springframework.web.filter.CorsFilter@ba4c99c, org.springframework.security.web.authentication.logout.LogoutFilter@36b6802f, com.example.bookstore.security.filter.JwtFilter@900ffc4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7d364bce, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4a3e1b5d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4158b72f, org.springframework.security.web.session.SessionManagementFilter@221ef0f0, org.springframework.security.web.access.ExceptionTranslationFilter@72f5fb36, org.springframework.security.web.access.intercept.AuthorizationFilter@136d1d58]
+04-06-2024 19:45:29.701 [main] INFO  o.s.s.web.DefaultSecurityFilterChain.<init> - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1203c259, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3bd552f7, org.springframework.security.web.context.SecurityContextHolderFilter@a55b4f9, org.springframework.security.web.header.HeaderWriterFilter@77fa2dcc, org.springframework.web.filter.CorsFilter@ba4c99c, org.springframework.security.web.authentication.logout.LogoutFilter@36b6802f, com.bookstore.security.filter.JwtFilter@900ffc4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7d364bce, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4a3e1b5d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4158b72f, org.springframework.security.web.session.SessionManagementFilter@221ef0f0, org.springframework.security.web.access.ExceptionTranslationFilter@72f5fb36, org.springframework.security.web.access.intercept.AuthorizationFilter@136d1d58]
 04-06-2024 19:45:30.390 [main] WARN  o.s.s.c.a.web.builders.WebSecurity.performBuild - You are asking Spring Security to ignore Ant [pattern='/v3/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
 04-06-2024 19:45:30.392 [main] INFO  o.s.s.web.DefaultSecurityFilterChain.<init> - Will not secure Ant [pattern='/v3/api-docs/**']
 04-06-2024 19:45:30.392 [main] WARN  o.s.s.c.a.web.builders.WebSecurity.performBuild - You are asking Spring Security to ignore Ant [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
@@ -714,11 +714,11 @@ com.example.bookstore.exception.SameUserInDatabase: null
 04-06-2024 19:47:57.857 [http-nio-8083-exec-9] INFO  c.e.b.security.service.JwtUtils.validateToken - Jwt exception: io.jsonwebtoken.MalformedJwtException: JWT strings must contain exactly 2 period characters. Found: 0
 04-06-2024 19:47:59.932 [http-nio-8083-exec-6] INFO  c.e.b.security.service.JwtUtils.validateToken - Jwt exception: io.jsonwebtoken.MalformedJwtException: JWT strings must contain exactly 2 period characters. Found: 0
 04-06-2024 19:49:22.100 [http-nio-8083-exec-8] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet].log - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.IllegalStateException: Invocation failure
-Controller [com.example.bookstore.security.controller.SecurityController]
-Method [public org.springframework.http.ResponseEntity<org.springframework.http.HttpStatus> com.example.bookstore.security.controller.SecurityController.registration(com.example.bookstore.security.model.dto.RegistrationDto) throws com.example.bookstore.exception.SameUserInDatabase] with argument values:
- [0] [type=com.example.bookstore.security.model.dto.RegistrationDto] [value=RegistrationDto(login=user, password=sdonwef, username=sjdjdww, age=30)] ] with root cause
-com.example.bookstore.exception.SameUserInDatabase: null
-	at com.example.bookstore.security.service.UserSecurityService.registration(UserSecurityService.java:39)
+Controller [com.bookstore.security.controller.SecurityController]
+Method [public org.springframework.http.ResponseEntity<org.springframework.http.HttpStatus> com.bookstore.security.controller.SecurityController.registration(com.bookstore.security.model.dto.RegistrationDto) throws com.bookstore.exception.SameUserInDatabase] with argument values:
+ [0] [type=com.bookstore.security.model.dto.RegistrationDto] [value=RegistrationDto(login=user, password=sdonwef, username=sjdjdww, age=30)] ] with root cause
+com.bookstore.exception.SameUserInDatabase: null
+	at com.bookstore.security.service.UserSecurityService.registration(UserSecurityService.java:39)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -733,8 +733,8 @@ com.example.bookstore.exception.SameUserInDatabase: null
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:720)
-	at com.example.bookstore.security.service.UserSecurityService$$SpringCGLIB$$0.registration(<generated>)
-	at com.example.bookstore.security.controller.SecurityController.registration(SecurityController.java:30)
+	at com.bookstore.security.service.UserSecurityService$$SpringCGLIB$$0.registration(<generated>)
+	at com.bookstore.security.controller.SecurityController.registration(SecurityController.java:30)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -792,7 +792,7 @@ com.example.bookstore.exception.SameUserInDatabase: null
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
 	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
-	at com.example.bookstore.security.filter.JwtFilter.doFilterInternal(JwtFilter.java:45)
+	at com.bookstore.security.filter.JwtFilter.doFilterInternal(JwtFilter.java:45)
 	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
@@ -881,11 +881,11 @@ com.example.bookstore.exception.SameUserInDatabase: null
 04-06-2024 19:53:35.855 [http-nio-8083-exec-8] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver.logException - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('"' (code 34)): was expecting comma to separate Object entries]
 04-06-2024 19:55:23.277 [http-nio-8083-exec-9] INFO  o.s.api.AbstractOpenApiResource.getOpenApi - Init duration for springdoc-openapi is: 360 ms
 04-06-2024 20:01:16.705 [http-nio-8083-exec-4] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet].log - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.IllegalStateException: Invocation failure
-Controller [com.example.bookstore.security.controller.SecurityController]
-Method [public org.springframework.http.ResponseEntity<org.springframework.http.HttpStatus> com.example.bookstore.security.controller.SecurityController.registration(com.example.bookstore.security.model.dto.RegistrationDto) throws com.example.bookstore.exception.SameUserInDatabase] with argument values:
- [0] [type=com.example.bookstore.security.model.dto.RegistrationDto] [value=RegistrationDto(login=user, password=admin, username=swellele, age=12)] ] with root cause
-com.example.bookstore.exception.SameUserInDatabase: null
-	at com.example.bookstore.security.service.UserSecurityService.registration(UserSecurityService.java:39)
+Controller [com.bookstore.security.controller.SecurityController]
+Method [public org.springframework.http.ResponseEntity<org.springframework.http.HttpStatus> com.bookstore.security.controller.SecurityController.registration(com.bookstore.security.model.dto.RegistrationDto) throws com.bookstore.exception.SameUserInDatabase] with argument values:
+ [0] [type=com.bookstore.security.model.dto.RegistrationDto] [value=RegistrationDto(login=user, password=admin, username=swellele, age=12)] ] with root cause
+com.bookstore.exception.SameUserInDatabase: null
+	at com.bookstore.security.service.UserSecurityService.registration(UserSecurityService.java:39)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -900,8 +900,8 @@ com.example.bookstore.exception.SameUserInDatabase: null
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:720)
-	at com.example.bookstore.security.service.UserSecurityService$$SpringCGLIB$$0.registration(<generated>)
-	at com.example.bookstore.security.controller.SecurityController.registration(SecurityController.java:30)
+	at com.bookstore.security.service.UserSecurityService$$SpringCGLIB$$0.registration(<generated>)
+	at com.bookstore.security.controller.SecurityController.registration(SecurityController.java:30)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -959,7 +959,7 @@ com.example.bookstore.exception.SameUserInDatabase: null
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
 	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
-	at com.example.bookstore.security.filter.JwtFilter.doFilterInternal(JwtFilter.java:45)
+	at com.bookstore.security.filter.JwtFilter.doFilterInternal(JwtFilter.java:45)
 	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
@@ -1032,11 +1032,11 @@ com.example.bookstore.exception.SameUserInDatabase: null
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
 	at java.base/java.lang.Thread.run(Thread.java:833)
 04-06-2024 20:01:21.623 [http-nio-8083-exec-6] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet].log - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.IllegalStateException: Invocation failure
-Controller [com.example.bookstore.security.controller.SecurityController]
-Method [public org.springframework.http.ResponseEntity<org.springframework.http.HttpStatus> com.example.bookstore.security.controller.SecurityController.registration(com.example.bookstore.security.model.dto.RegistrationDto) throws com.example.bookstore.exception.SameUserInDatabase] with argument values:
- [0] [type=com.example.bookstore.security.model.dto.RegistrationDto] [value=RegistrationDto(login=user, password=admin, username=swellele, age=12)] ] with root cause
-com.example.bookstore.exception.SameUserInDatabase: null
-	at com.example.bookstore.security.service.UserSecurityService.registration(UserSecurityService.java:39)
+Controller [com.bookstore.security.controller.SecurityController]
+Method [public org.springframework.http.ResponseEntity<org.springframework.http.HttpStatus> com.bookstore.security.controller.SecurityController.registration(com.bookstore.security.model.dto.RegistrationDto) throws com.bookstore.exception.SameUserInDatabase] with argument values:
+ [0] [type=com.bookstore.security.model.dto.RegistrationDto] [value=RegistrationDto(login=user, password=admin, username=swellele, age=12)] ] with root cause
+com.bookstore.exception.SameUserInDatabase: null
+	at com.bookstore.security.service.UserSecurityService.registration(UserSecurityService.java:39)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1051,8 +1051,8 @@ com.example.bookstore.exception.SameUserInDatabase: null
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:720)
-	at com.example.bookstore.security.service.UserSecurityService$$SpringCGLIB$$0.registration(<generated>)
-	at com.example.bookstore.security.controller.SecurityController.registration(SecurityController.java:30)
+	at com.bookstore.security.service.UserSecurityService$$SpringCGLIB$$0.registration(<generated>)
+	at com.bookstore.security.controller.SecurityController.registration(SecurityController.java:30)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1110,7 +1110,7 @@ com.example.bookstore.exception.SameUserInDatabase: null
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
 	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
-	at com.example.bookstore.security.filter.JwtFilter.doFilterInternal(JwtFilter.java:45)
+	at com.bookstore.security.filter.JwtFilter.doFilterInternal(JwtFilter.java:45)
 	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
@@ -1183,11 +1183,11 @@ com.example.bookstore.exception.SameUserInDatabase: null
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
 	at java.base/java.lang.Thread.run(Thread.java:833)
 04-06-2024 20:01:37.010 [http-nio-8083-exec-8] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet].log - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.IllegalStateException: Invocation failure
-Controller [com.example.bookstore.security.controller.SecurityController]
-Method [public org.springframework.http.ResponseEntity<org.springframework.http.HttpStatus> com.example.bookstore.security.controller.SecurityController.registration(com.example.bookstore.security.model.dto.RegistrationDto) throws com.example.bookstore.exception.SameUserInDatabase] with argument values:
- [0] [type=com.example.bookstore.security.model.dto.RegistrationDto] [value=RegistrationDto(login=user, password=admin, username=userrrr, age=12)] ] with root cause
-com.example.bookstore.exception.SameUserInDatabase: null
-	at com.example.bookstore.security.service.UserSecurityService.registration(UserSecurityService.java:39)
+Controller [com.bookstore.security.controller.SecurityController]
+Method [public org.springframework.http.ResponseEntity<org.springframework.http.HttpStatus> com.bookstore.security.controller.SecurityController.registration(com.bookstore.security.model.dto.RegistrationDto) throws com.bookstore.exception.SameUserInDatabase] with argument values:
+ [0] [type=com.bookstore.security.model.dto.RegistrationDto] [value=RegistrationDto(login=user, password=admin, username=userrrr, age=12)] ] with root cause
+com.bookstore.exception.SameUserInDatabase: null
+	at com.bookstore.security.service.UserSecurityService.registration(UserSecurityService.java:39)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1202,8 +1202,8 @@ com.example.bookstore.exception.SameUserInDatabase: null
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:720)
-	at com.example.bookstore.security.service.UserSecurityService$$SpringCGLIB$$0.registration(<generated>)
-	at com.example.bookstore.security.controller.SecurityController.registration(SecurityController.java:30)
+	at com.bookstore.security.service.UserSecurityService$$SpringCGLIB$$0.registration(<generated>)
+	at com.bookstore.security.controller.SecurityController.registration(SecurityController.java:30)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1261,7 +1261,7 @@ com.example.bookstore.exception.SameUserInDatabase: null
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
 	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
-	at com.example.bookstore.security.filter.JwtFilter.doFilterInternal(JwtFilter.java:45)
+	at com.bookstore.security.filter.JwtFilter.doFilterInternal(JwtFilter.java:45)
 	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
@@ -1334,11 +1334,11 @@ com.example.bookstore.exception.SameUserInDatabase: null
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
 	at java.base/java.lang.Thread.run(Thread.java:833)
 04-06-2024 20:01:44.597 [http-nio-8083-exec-5] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet].log - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.IllegalStateException: Invocation failure
-Controller [com.example.bookstore.security.controller.SecurityController]
-Method [public org.springframework.http.ResponseEntity<org.springframework.http.HttpStatus> com.example.bookstore.security.controller.SecurityController.registration(com.example.bookstore.security.model.dto.RegistrationDto) throws com.example.bookstore.exception.SameUserInDatabase] with argument values:
- [0] [type=com.example.bookstore.security.model.dto.RegistrationDto] [value=RegistrationDto(login=user, password=admin, username=userrr, age=12)] ] with root cause
-com.example.bookstore.exception.SameUserInDatabase: null
-	at com.example.bookstore.security.service.UserSecurityService.registration(UserSecurityService.java:39)
+Controller [com.bookstore.security.controller.SecurityController]
+Method [public org.springframework.http.ResponseEntity<org.springframework.http.HttpStatus> com.bookstore.security.controller.SecurityController.registration(com.bookstore.security.model.dto.RegistrationDto) throws com.bookstore.exception.SameUserInDatabase] with argument values:
+ [0] [type=com.bookstore.security.model.dto.RegistrationDto] [value=RegistrationDto(login=user, password=admin, username=userrr, age=12)] ] with root cause
+com.bookstore.exception.SameUserInDatabase: null
+	at com.bookstore.security.service.UserSecurityService.registration(UserSecurityService.java:39)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1353,8 +1353,8 @@ com.example.bookstore.exception.SameUserInDatabase: null
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:720)
-	at com.example.bookstore.security.service.UserSecurityService$$SpringCGLIB$$0.registration(<generated>)
-	at com.example.bookstore.security.controller.SecurityController.registration(SecurityController.java:30)
+	at com.bookstore.security.service.UserSecurityService$$SpringCGLIB$$0.registration(<generated>)
+	at com.bookstore.security.controller.SecurityController.registration(SecurityController.java:30)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1412,7 +1412,7 @@ com.example.bookstore.exception.SameUserInDatabase: null
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
 	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
-	at com.example.bookstore.security.filter.JwtFilter.doFilterInternal(JwtFilter.java:45)
+	at com.bookstore.security.filter.JwtFilter.doFilterInternal(JwtFilter.java:45)
 	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
@@ -1485,11 +1485,11 @@ com.example.bookstore.exception.SameUserInDatabase: null
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
 	at java.base/java.lang.Thread.run(Thread.java:833)
 04-06-2024 20:01:49.321 [http-nio-8083-exec-10] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet].log - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.IllegalStateException: Invocation failure
-Controller [com.example.bookstore.security.controller.SecurityController]
-Method [public org.springframework.http.ResponseEntity<org.springframework.http.HttpStatus> com.example.bookstore.security.controller.SecurityController.registration(com.example.bookstore.security.model.dto.RegistrationDto) throws com.example.bookstore.exception.SameUserInDatabase] with argument values:
- [0] [type=com.example.bookstore.security.model.dto.RegistrationDto] [value=RegistrationDto(login=user, password=admin, username=user, age=12)] ] with root cause
-com.example.bookstore.exception.SameUserInDatabase: null
-	at com.example.bookstore.security.service.UserSecurityService.registration(UserSecurityService.java:39)
+Controller [com.bookstore.security.controller.SecurityController]
+Method [public org.springframework.http.ResponseEntity<org.springframework.http.HttpStatus> com.bookstore.security.controller.SecurityController.registration(com.bookstore.security.model.dto.RegistrationDto) throws com.bookstore.exception.SameUserInDatabase] with argument values:
+ [0] [type=com.bookstore.security.model.dto.RegistrationDto] [value=RegistrationDto(login=user, password=admin, username=user, age=12)] ] with root cause
+com.bookstore.exception.SameUserInDatabase: null
+	at com.bookstore.security.service.UserSecurityService.registration(UserSecurityService.java:39)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1504,8 +1504,8 @@ com.example.bookstore.exception.SameUserInDatabase: null
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:720)
-	at com.example.bookstore.security.service.UserSecurityService$$SpringCGLIB$$0.registration(<generated>)
-	at com.example.bookstore.security.controller.SecurityController.registration(SecurityController.java:30)
+	at com.bookstore.security.service.UserSecurityService$$SpringCGLIB$$0.registration(<generated>)
+	at com.bookstore.security.controller.SecurityController.registration(SecurityController.java:30)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1563,7 +1563,7 @@ com.example.bookstore.exception.SameUserInDatabase: null
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
 	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
-	at com.example.bookstore.security.filter.JwtFilter.doFilterInternal(JwtFilter.java:45)
+	at com.bookstore.security.filter.JwtFilter.doFilterInternal(JwtFilter.java:45)
 	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
@@ -1638,11 +1638,11 @@ com.example.bookstore.exception.SameUserInDatabase: null
 04-06-2024 20:05:30.246 [http-nio-8083-exec-6] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver.logException - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('}' (code 125)): was expecting double-quote to start field name]
 04-06-2024 20:05:33.255 [http-nio-8083-exec-8] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver.logException - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('}' (code 125)): was expecting double-quote to start field name]
 04-06-2024 20:05:38.387 [http-nio-8083-exec-5] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet].log - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.IllegalStateException: Invocation failure
-Controller [com.example.bookstore.security.controller.SecurityController]
-Method [public org.springframework.http.ResponseEntity<org.springframework.http.HttpStatus> com.example.bookstore.security.controller.SecurityController.registration(com.example.bookstore.security.model.dto.RegistrationDto) throws com.example.bookstore.exception.SameUserInDatabase] with argument values:
- [0] [type=com.example.bookstore.security.model.dto.RegistrationDto] [value=RegistrationDto(login=strijijoijonng, password=strnjnkjning, username=strijonng, age=990)] ] with root cause
-com.example.bookstore.exception.SameUserInDatabase: null
-	at com.example.bookstore.security.service.UserSecurityService.registration(UserSecurityService.java:39)
+Controller [com.bookstore.security.controller.SecurityController]
+Method [public org.springframework.http.ResponseEntity<org.springframework.http.HttpStatus> com.bookstore.security.controller.SecurityController.registration(com.bookstore.security.model.dto.RegistrationDto) throws com.bookstore.exception.SameUserInDatabase] with argument values:
+ [0] [type=com.bookstore.security.model.dto.RegistrationDto] [value=RegistrationDto(login=strijijoijonng, password=strnjnkjning, username=strijonng, age=990)] ] with root cause
+com.bookstore.exception.SameUserInDatabase: null
+	at com.bookstore.security.service.UserSecurityService.registration(UserSecurityService.java:39)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1657,8 +1657,8 @@ com.example.bookstore.exception.SameUserInDatabase: null
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:720)
-	at com.example.bookstore.security.service.UserSecurityService$$SpringCGLIB$$0.registration(<generated>)
-	at com.example.bookstore.security.controller.SecurityController.registration(SecurityController.java:30)
+	at com.bookstore.security.service.UserSecurityService$$SpringCGLIB$$0.registration(<generated>)
+	at com.bookstore.security.controller.SecurityController.registration(SecurityController.java:30)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1716,7 +1716,7 @@ com.example.bookstore.exception.SameUserInDatabase: null
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
 	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
-	at com.example.bookstore.security.filter.JwtFilter.doFilterInternal(JwtFilter.java:45)
+	at com.bookstore.security.filter.JwtFilter.doFilterInternal(JwtFilter.java:45)
 	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
@@ -1789,11 +1789,11 @@ com.example.bookstore.exception.SameUserInDatabase: null
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
 	at java.base/java.lang.Thread.run(Thread.java:833)
 04-06-2024 20:05:41.215 [http-nio-8083-exec-10] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet].log - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.IllegalStateException: Invocation failure
-Controller [com.example.bookstore.security.controller.SecurityController]
-Method [public org.springframework.http.ResponseEntity<org.springframework.http.HttpStatus> com.example.bookstore.security.controller.SecurityController.registration(com.example.bookstore.security.model.dto.RegistrationDto) throws com.example.bookstore.exception.SameUserInDatabase] with argument values:
- [0] [type=com.example.bookstore.security.model.dto.RegistrationDto] [value=RegistrationDto(login=strijijoijonng, password=strnjnkjning, username=strijonng, age=990)] ] with root cause
-com.example.bookstore.exception.SameUserInDatabase: null
-	at com.example.bookstore.security.service.UserSecurityService.registration(UserSecurityService.java:39)
+Controller [com.bookstore.security.controller.SecurityController]
+Method [public org.springframework.http.ResponseEntity<org.springframework.http.HttpStatus> com.bookstore.security.controller.SecurityController.registration(com.bookstore.security.model.dto.RegistrationDto) throws com.bookstore.exception.SameUserInDatabase] with argument values:
+ [0] [type=com.bookstore.security.model.dto.RegistrationDto] [value=RegistrationDto(login=strijijoijonng, password=strnjnkjning, username=strijonng, age=990)] ] with root cause
+com.bookstore.exception.SameUserInDatabase: null
+	at com.bookstore.security.service.UserSecurityService.registration(UserSecurityService.java:39)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1808,8 +1808,8 @@ com.example.bookstore.exception.SameUserInDatabase: null
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:720)
-	at com.example.bookstore.security.service.UserSecurityService$$SpringCGLIB$$0.registration(<generated>)
-	at com.example.bookstore.security.controller.SecurityController.registration(SecurityController.java:30)
+	at com.bookstore.security.service.UserSecurityService$$SpringCGLIB$$0.registration(<generated>)
+	at com.bookstore.security.controller.SecurityController.registration(SecurityController.java:30)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1867,7 +1867,7 @@ com.example.bookstore.exception.SameUserInDatabase: null
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
 	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
-	at com.example.bookstore.security.filter.JwtFilter.doFilterInternal(JwtFilter.java:45)
+	at com.bookstore.security.filter.JwtFilter.doFilterInternal(JwtFilter.java:45)
 	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
 	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
@@ -1977,7 +1977,7 @@ com.example.bookstore.exception.SameUserInDatabase: null
 04-06-2024 20:21:45.363 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 04-06-2024 20:21:45.422 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer.configure - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailService
 04-06-2024 20:21:45.890 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver.<init> - Exposing 5 endpoints beneath base path '/actuator'
-04-06-2024 20:21:45.941 [main] INFO  o.s.s.web.DefaultSecurityFilterChain.<init> - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@616b2b2, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@65402e26, org.springframework.security.web.context.SecurityContextHolderFilter@4a3e1b5d, org.springframework.security.web.header.HeaderWriterFilter@769d0ef2, org.springframework.web.filter.CorsFilter@51cf17e8, org.springframework.security.web.authentication.logout.LogoutFilter@5275d709, com.example.bookstore.security.filter.JwtFilter@eccaf1b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@68596992, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1f26bd62, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7abeaed0, org.springframework.security.web.session.SessionManagementFilter@7388d94d, org.springframework.security.web.access.ExceptionTranslationFilter@30dabb23, org.springframework.security.web.access.intercept.AuthorizationFilter@4951dc8c]
+04-06-2024 20:21:45.941 [main] INFO  o.s.s.web.DefaultSecurityFilterChain.<init> - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@616b2b2, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@65402e26, org.springframework.security.web.context.SecurityContextHolderFilter@4a3e1b5d, org.springframework.security.web.header.HeaderWriterFilter@769d0ef2, org.springframework.web.filter.CorsFilter@51cf17e8, org.springframework.security.web.authentication.logout.LogoutFilter@5275d709, com.bookstore.security.filter.JwtFilter@eccaf1b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@68596992, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1f26bd62, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7abeaed0, org.springframework.security.web.session.SessionManagementFilter@7388d94d, org.springframework.security.web.access.ExceptionTranslationFilter@30dabb23, org.springframework.security.web.access.intercept.AuthorizationFilter@4951dc8c]
 04-06-2024 20:21:46.598 [main] WARN  o.s.s.c.a.web.builders.WebSecurity.performBuild - You are asking Spring Security to ignore Ant [pattern='/v3/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
 04-06-2024 20:21:46.599 [main] INFO  o.s.s.web.DefaultSecurityFilterChain.<init> - Will not secure Ant [pattern='/v3/api-docs/**']
 04-06-2024 20:21:46.599 [main] WARN  o.s.s.c.a.web.builders.WebSecurity.performBuild - You are asking Spring Security to ignore Ant [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
